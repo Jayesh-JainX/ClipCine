@@ -7,9 +7,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BsInstagram } from "react-icons/bs";
 import { MdOutlinePodcasts } from "react-icons/md";
 import { FaRegFileVideo } from "react-icons/fa";
+import Image from "next/image";
 
 const MainBanner = () => {
   const [thumbnails, setThumbnails] = useState<{ [key: string]: string }>({});
+  const [isLoading, setIsLoading] = useState(true); // Track loading state for the banner image
 
   useEffect(() => {
     // Function to capture the first frame of a video
@@ -55,30 +57,32 @@ const MainBanner = () => {
     });
   }, []);
 
-  const [isLoading, setIsLoading] = useState(true);
+  // Handle image load completion
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
 
-  // Simulate loading delay
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer); // Cleanup on unmount
+    // Initially, set loading to true, and it will change when the image loads
+    setIsLoading(true);
   }, []);
-
   return (
     <div className="mx-4 my-4">
       {/* Conditionally render Skeleton or Image */}
-      {!isLoading ? (
-        <img
-          src="/banner.png"
-          alt="Banner Image"
-          className="md:w-full rounded-md mb-4"
-          loading="lazy"
-        />
-      ) : (
+      {isLoading && (
         <Skeleton className="w-full h-[25vh] sm:h-[30vh] md:h-[40vh] lg:h-[90vh] rounded-md mb-4" />
       )}
+
+      <Image
+        src="/banner.png"
+        alt="Banner Image"
+        className="md:w-full rounded-md mb-4"
+        layout="responsive"
+        width={1920}
+        height={1080}
+        loading="lazy"
+        onLoadingComplete={handleImageLoad} // Trigger when image is loaded
+      />
 
       {/* Reels Section */}
       <div className="flex items-center justify-between mb-6 border-t-2 pt-4">
