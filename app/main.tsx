@@ -62,27 +62,27 @@ const MainBanner = () => {
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    // Initially, set loading to true, and it will change when the image loads
-    setIsLoading(true);
-  }, []);
   return (
     <div className="mx-4 my-4">
       {/* Conditionally render Skeleton or Image */}
-      {isLoading && (
-        <Skeleton className="w-full h-[25vh] sm:h-[30vh] md:h-[40vh] lg:h-[90vh] rounded-md mb-4" />
-      )}
+      <div className="relative w-full pb-[56.25%] sm:pb-[60%] md:pb-[56.25%] lg:pb-[50%] mb-4">
+        {/* Skeleton loader */}
+        {isLoading && (
+          <Skeleton className="absolute inset-0 w-full h-full rounded-md" />
+        )}
 
-      <Image
-        src="/banner.png"
-        alt="Banner Image"
-        className="md:w-full rounded-md mb-4"
-        layout="responsive"
-        width={1920}
-        height={1080}
-        loading="lazy"
-        onLoadingComplete={handleImageLoad} // Trigger when image is loaded
-      />
+        {/* Image */}
+        <img
+          src="/banner.png"
+          alt="Banner Image"
+          className="absolute inset-0 w-full h-full object-fill rounded-md"
+          loading="lazy"
+          onLoad={handleImageLoad}
+        />
+      </div>
+
+      {/* Content below */}
+      <div className="mt-4">{/* Your content below the image */}</div>
 
       {/* Reels Section */}
       <div className="flex items-center justify-between mb-6 border-t-2 pt-4">
