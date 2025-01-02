@@ -7,7 +7,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { BsInstagram } from "react-icons/bs";
 import { MdOutlinePodcasts } from "react-icons/md";
 import { FaRegFileVideo } from "react-icons/fa";
-import Image from "next/image";
 
 const MainBanner = () => {
   const [thumbnails, setThumbnails] = useState<{ [key: string]: string }>({});

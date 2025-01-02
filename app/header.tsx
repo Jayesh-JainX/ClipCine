@@ -36,12 +36,11 @@ interface Reel {
 
 const Header: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [isVisible, setIsVisible] = useState(true);
   const [filteredReels, setFilteredReels] = useState<Reel[]>([]); // Type filteredReels correctly
   const [showRecommendations, setShowRecommendations] = useState(false);
   const [thumbnails, setThumbnails] = useState<{ [key: string]: string }>({}); // Store thumbnails
-  const searchInputRef = useRef<HTMLInputElement | null>(null);
-  const recommendationsRef = useRef<HTMLDivElement | null>(null);
+  const searchInputRef = useRef<HTMLDivElement>(null); // Ref for the search input container
+  const recommendationsRef = useRef<HTMLDivElement>(null);
 
   // Read the query parameter from the URL when the component loads
   useEffect(() => {
@@ -89,29 +88,23 @@ const Header: React.FC = () => {
     }
   };
 
-  // Hide/show "Support Me" on mobile
-  function handleClickMobile(event: { preventDefault: () => void }) {
-    event.preventDefault();
-    setIsVisible(false);
-  }
-
   // Close recommendations when clicked outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: { target: any }) => {
       if (
-        recommendationsRef.current &&
-        !recommendationsRef.current.contains(event.target as Node) &&
         searchInputRef.current &&
-        !searchInputRef.current.contains(event.target as Node)
+        !searchInputRef.current.contains(event.target) &&
+        recommendationsRef.current &&
+        !recommendationsRef.current.contains(event.target)
       ) {
         setShowRecommendations(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -182,6 +175,10 @@ const Header: React.FC = () => {
     },
   ];
 
+  const handleClear = () => {
+    setSearchQuery(""); // This will clear the search input
+  };
+
   return (
     <header>
       {/* Desktop view */}
@@ -205,28 +202,43 @@ const Header: React.FC = () => {
         </Link>
 
         {/* Center section - Search input */}
-        <div className="w-full md:w-1/2 flex justify-center items-center relative">
+        <div
+          className="w-full md:w-1/2 flex justify-center items-center relative"
+          ref={searchInputRef}
+        >
           <div className="relative w-full flex items-center">
             {/* Search Input */}
             <Input
-              ref={searchInputRef}
               value={searchQuery}
               onChange={handleSearchChange}
-              onKeyPress={handleKeyPress} // Added key press handler
+              onKeyPress={handleKeyPress} // Assuming you have the handleKeyPress function
               placeholder="Search..."
               className="w-full px-4 py-2 rounded-md bg-primary-foreground text-sm md:text-base"
             />
+
+            {/* Clear Button (X) */}
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="absolute right-3 text-2xl mx-8"
+              >
+                &times;
+              </button>
+            )}
+
+            {/* Search Icon */}
             <Search
               className="ml-2 text-lg cursor-pointer"
               onClick={handleSearchSubmit}
             />
           </div>
 
-          {/* Recommendations below input */}
+          {/* Recommendations for Desktop */}
           {searchQuery && showRecommendations && filteredReels.length > 0 && (
             <div
+              className="absolute top-full left-0 w-full bg-primary-foreground shadow-md rounded-md mt-2 z-10"
               ref={recommendationsRef}
-              className="absolute top-full left-0 w-[96%] bg-primary-foreground shadow-md rounded-md mt-2 z-10"
             >
               <ul className="max-h-60 overflow-y-auto">
                 {filteredReels.slice(0, 5).map((reel) => (
@@ -237,11 +249,15 @@ const Header: React.FC = () => {
                     target={reel.name === undefined ? "_blank" : "_top"}
                     key={reel.id}
                     className="block p-2 cursor-pointer hover:bg-secondary transition-all ease-in-out duration-300"
+                    onClick={(e) => {
+                      // Prevent the dropdown from closing when a link is clicked
+                      e.stopPropagation();
+                    }}
                   >
                     <div className="flex items-center justify-between space-x-3">
                       {/* Skeleton Loader for video thumbnail */}
                       {!thumbnails[reel.id] && reel.code !== undefined ? (
-                        <div className="w-10 h-10 bg-gray-300 animate-pulse rounded"></div>
+                        <div className="w-14 mx-2 h-14 bg-gray-300 animate-pulse rounded"></div>
                       ) : (
                         <span className="relative flex-shrink-0">
                           {/* Conditionally render the image if reel.code is not undefined */}
@@ -254,7 +270,7 @@ const Header: React.FC = () => {
                               className="rounded h-14 w-14 mx-2"
                             />
                           ) : (
-                            <div className="w-14 h-14 bg-gray-400 rounded-md relative flex justify-center items-center bg-gradient-to-b from-blue-500 via-purple-600 to-blue-800 border border-solid">
+                            <div className="w-14 mx-2 h-14 bg-gray-400 rounded-md relative flex justify-center items-center bg-gradient-to-b from-blue-500 via-purple-600 to-blue-800 border border-solid">
                               {/* Centered Icon Image */}
                               <img
                                 src="/icon.png" // Place your icon image here
@@ -278,7 +294,7 @@ const Header: React.FC = () => {
                       </div>
 
                       {/* Platform Icons */}
-                      <span className="flex items-center space-x-2 pr-2 justify-end">
+                      <span className="flex items-center pr-2 space-x-2 justify-end">
                         {reel.name === undefined ? (
                           <span className="relative flex justify-end">
                             {reel.platform === "Instagram" ? (
@@ -543,15 +559,25 @@ const Header: React.FC = () => {
 
         {/* Search input for mobile */}
         <div className="w-full flex justify-center items-center mt-4 relative">
-          <div className="flex w-full">
+          <div className="flex w-full" ref={searchInputRef}>
             <Input
-              ref={searchInputRef}
               value={searchQuery}
               onChange={handleSearchChange}
-              onKeyPress={handleKeyPress} // Added key press handler
+              onKeyPress={handleKeyPress}
               placeholder="Search..."
               className="w-full px-4 py-2 rounded-md bg-primary-foreground"
             />
+
+            {/* Clear Button (X) */}
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="absolute right-3 text-3xl mx-8"
+              >
+                &times;
+              </button>
+            )}
             <div className="flex items-center justify-center ml-2">
               <Search className="text-lg" onClick={handleSearchSubmit} />
             </div>
@@ -576,7 +602,7 @@ const Header: React.FC = () => {
                     <div className="flex items-center justify-between space-x-3">
                       {/* Skeleton Loader for video thumbnail */}
                       {!thumbnails[reel.id] && reel.code !== undefined ? (
-                        <div className="w-10 h-10 bg-gray-300 animate-pulse rounded"></div>
+                        <div className="w-14 mx-2 h-14 bg-gray-300 animate-pulse rounded"></div>
                       ) : (
                         <span className="relative flex-shrink-0">
                           {/* Conditionally render the image if reel.code is not undefined */}
@@ -589,7 +615,7 @@ const Header: React.FC = () => {
                               className="rounded h-14 w-14 mx-2"
                             />
                           ) : (
-                            <div className="w-14 h-14 bg-gray-400 rounded-md relative flex justify-center items-center bg-gradient-to-b from-blue-500 via-purple-600 to-blue-800 border border-solid">
+                            <div className="w-14 mx-2 h-14 bg-gray-400 rounded-md relative flex justify-center items-center bg-gradient-to-b from-blue-500 via-purple-600 to-blue-800 border border-solid">
                               {/* Centered Icon Image */}
                               <img
                                 src="/icon.png" // Place your icon image here
