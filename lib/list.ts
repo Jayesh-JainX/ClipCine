@@ -20,9 +20,9 @@ const reelsData: Reel[] = [
   },
   {
     id: "2",
-    movieName: "Inception",
+    movieName: "The Wild Robot",
     tags: ["Sci-Fi", "Thriller", "Mind-bending"],
-    partName: "Part 2",
+    partName: "Part 59",
     name: "1201.mp4",
     code: 1201,
   },
