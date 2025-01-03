@@ -12,9 +12,9 @@ type Reel = {
 const reelsData: Reel[] = [
   {
     id: "1",
-    movieName: "Dear Santa",
-    tags: ["Christmas", "Holiday", "Family"],
-    partName: "Part 59",
+    movieName: "The Wild Robot",
+    tags: ["Sci-Fi", "Adventure", "Nature"],
+    partName: "Part 74",
     name: "1200.mp4",
     code: 1200,
   },
