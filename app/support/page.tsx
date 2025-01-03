@@ -1,8 +1,29 @@
+"use client";
+import React, { useState } from "react";
 import Metadata from "@/components/MetaData";
-import React from "react";
-import Link from "next/link";
 
 export default function SupportPage() {
+  const [copiedAddress, setCopiedAddress] = useState(false);
+  const [copiedMemo, setCopiedMemo] = useState(false);
+  const [copiedPaypal, setCopiedPaypal] = useState(false);
+  const [copiedAirtm, setCopiedAirtm] = useState(false);
+
+  // Function to copy text to clipboard
+  const copyToClipboard = (text: string, type: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      if (type === "address") setCopiedAddress(true);
+      if (type === "memo") setCopiedMemo(true);
+      if (type === "paypal") setCopiedPaypal(true);
+      if (type === "airtm") setCopiedAirtm(true);
+      setTimeout(() => {
+        if (type === "address") setCopiedAddress(false);
+        if (type === "memo") setCopiedMemo(false);
+        if (type === "paypal") setCopiedPaypal(false);
+        if (type === "airtm") setCopiedAirtm(false);
+      }, 2000); // Reset copied state after 2 seconds
+    });
+  };
+
   return (
     <div className="font-sans">
       <Metadata
@@ -36,43 +57,110 @@ export default function SupportPage() {
             features.
           </p>
 
-          {/* Donation Options */}
+          {/* Donation Details */}
+          <p className="mt-6 font-semibold">
+            Please use the following details to donate:
+          </p>
+
           <ul className="mt-6 space-y-4">
-            <li>
-              <Link
-                href="https://www.paypal.com/donate?business=example@paypal.com"
-                passHref
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-semibold"
-              >
-                <strong>PayPal Donation:</strong> Donate via PayPal to help us
-                create more movie clips and content.
-              </Link>
+            <li className="flex items-center space-x-4">
+              <span>
+                <strong>Wallet Address:</strong>
+                <span className="flex justify-start items-center">
+                  <span className="break-all max-w-xs block mr-5">
+                    GATED25F24BNVPQKSZCTRSBSKGHPZVDQUCM6JXAAQHDRZDVZEWDC7NO7
+                  </span>
+                  <button
+                    onClick={() =>
+                      copyToClipboard(
+                        "GATED25F24BNVPQKSZCTRSBSKGHPZVDQUCM6JXAAQHDRZDVZEWDC7NO7",
+                        "address"
+                      )
+                    }
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    {copiedAddress ? "Copied !" : "Copy"}
+                  </button>
+                </span>
+              </span>
             </li>
-            <li>
-              <Link
-                href="https://www.airtm.com/en/transfer?recipient=example"
-                passHref
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-semibold"
-              >
-                <strong>Airtm Donation:</strong> Donate via Airtm to support our
-                efforts and enjoy seamless transactions.
-              </Link>
+            <li className="flex items-center space-x-4">
+              <span>
+                <strong>Required Memo:</strong>
+                <span className="flex items-center justify-start">
+                  <span className="break-all max-w-xs block mr-5">
+                    229D60PB4A9HABWXEVCYM35C8T
+                  </span>
+                  <button
+                    onClick={() =>
+                      copyToClipboard("229D60PB4A9HABWXEVCYM35C8T", "memo")
+                    }
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    {copiedMemo ? "Copied !" : "Copy"}
+                  </button>
+                </span>
+              </span>
             </li>
-            <li>
-              <Link
-                href="https://www.sellar.com/donate?user=example"
-                passHref
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-800 font-semibold"
-              >
-                <strong>SellaR Donation:</strong> Support ClipCine using SellaR
-                for quick and secure donations.
-              </Link>
+          </ul>
+
+          <p className="mt-5 text-center text-red-600 font-semibold">
+            <strong>Important:</strong> Please make sure to include the memo
+            when sending your donation. Without the correct memo, we will not be
+            able to receive or process your payment.
+          </p>
+        </section>
+
+        {/* PayPal Email Section */}
+        <section className="shadow-lg rounded-lg p-6 bg-secondary mb-8">
+          <h2 className="text-2xl font-semibold">Donate via PayPal</h2>
+          <p className="mt-2">
+            You can also donate through PayPal using the email address below:
+          </p>
+          <ul className="mt-6 space-y-4">
+            <li className="flex items-center space-x-4">
+              <span>
+                <strong>PayPal Email:</strong>
+                <span className="flex items-center justify-start">
+                  <span className="break-all max-w-xs block mr-5">
+                    jainayesh255@gmail.com
+                  </span>
+                  <button
+                    onClick={() =>
+                      copyToClipboard("jainayesh255@gmail.com", "paypal")
+                    }
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    {copiedPaypal ? "Copied !" : "Copy"}
+                  </button>
+                </span>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        {/* Airtm Username Section */}
+        <section className="shadow-lg rounded-lg p-6 bg-secondary mb-8">
+          <h2 className="text-2xl font-semibold">Donate via Airtm</h2>
+          <p className="mt-2">
+            You can also donate through Airtm using the username below:
+          </p>
+          <ul className="mt-6 space-y-4">
+            <li className="flex items-center space-x-4">
+              <span>
+                <strong>Airtm Username:</strong>
+                <span className="flex justify-start items-center">
+                  <span className="break-all max-w-xs block mr-5">
+                    jayeshjain021
+                  </span>
+                  <button
+                    onClick={() => copyToClipboard("jayeshjain021", "airtm")}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    {copiedAirtm ? "Copied !" : "Copy"}
+                  </button>
+                </span>
+              </span>
             </li>
           </ul>
         </section>
@@ -124,9 +212,11 @@ export default function SupportPage() {
               How can I donate to ClipCine?
             </h3>
             <p className="mt-2">
-              You can donate via PayPal, Airtm, SellaR, or make a one-time
-              donation through our website. Choose the method that's most
-              convenient for you.
+              You can support us through <strong>Stellar</strong> by using the
+              wallet address and memo provided above. Alternatively, you can
+              donate via <strong>Airtm</strong> by using the username or choose{" "}
+              <strong>PayPal</strong> with the email address listed above. Your
+              contribution is greatly appreciated!
             </p>
           </div>
 
