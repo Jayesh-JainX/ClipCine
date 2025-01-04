@@ -27,6 +27,14 @@ const reelsData: Reel[] = [
     code: 1201,
   },
   {
+    id: "4",
+    movieName: "The Wild Robot",
+    tags: ["Sci-Fi", "Adventure", "Nature"],
+    partName: "Part 98",
+    name: "1202.mp4",
+    code: 1202,
+  },
+  {
     id: "3",
     movieName: "Dear Santa",
     tags: ["Christmas", "Holiday", "Family"],
@@ -34,14 +42,14 @@ const reelsData: Reel[] = [
     link: "https://www.instagram.com/p/DEUqTcGIjSG",
     platform: "Instagram",
   },
-  {
-    id: "4",
-    movieName: "Dear Santa",
-    tags: ["Christmas", "Holiday", "Family"],
-    partName: "Part 22",
-    link: "https://streamable.com/3alswm",
-    platform: "Streamable",
-  },
+  // {
+  //   id: "4",
+  //   movieName: "Dear Santa",
+  //   tags: ["Christmas", "Holiday", "Family"],
+  //   partName: "Part 22",
+  //   link: "https://streamable.com/3alswm",
+  //   platform: "Streamable",
+  // },
 ];
 
 export default reelsData;
