@@ -51,7 +51,7 @@ export const defaultMetadata = {
       "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films. Whether you're looking for iconic scenes, unforgettable moments, or just want to revisit the best parts of a movie, ClipCine has it all. Browse, search, and enjoy clips from a wide variety of genres and movies, all in one place. Stay up-to-date with the latest film highlights and relive the magic of cinema!",
     images: [
       {
-        url: "https://clipcine.vercel.app/preview.png",
+        url: "https://clipcine.vercel.app/preview.jpg",
         width: 1200,
         height: 630,
         alt: "ClipCine - Movie Clips & Cinema Moments",
@@ -67,7 +67,7 @@ export const defaultMetadata = {
       "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films. Whether you're looking for iconic scenes, unforgettable moments, or just want to revisit the best parts of a movie, ClipCine has it all. Browse, search, and enjoy clips from a wide variety of genres and movies, all in one place. Stay up-to-date with the latest film highlights and relive the magic of cinema!",
     images: [
       {
-        url: "https://clipcine.vercel.app/banner.png",
+        url: "https://clipcine.vercel.app/preview.jpg",
         width: 1200,
         height: 630,
         alt: "ClipCine - Movie Clips & Cinema Moments",

@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "./header";
 import Footer from "./footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { defaultMetadata } from "@/lib/seo";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,11 +20,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "ClipCine - Explore & Watch Movie Clips Anytime",
-  description:
-    "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films. Whether you're looking for iconic scenes, unforgettable moments, or just want to revisit the best parts of a movie, ClipCine has it all. Browse, search, and enjoy clips from a wide variety of genres and movies, all in one place. Stay up-to-date with the latest film highlights and relive the magic of cinema!",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
