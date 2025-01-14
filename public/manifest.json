@@ -1,20 +1,93 @@
 {
-  "name": "ClipCine",
-  "short_name": "ClipCine",
-  "description": "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#87CEEB",
-  "icons": [
-    {
-      "src": "/favicon-32x32.ico",
-      "sizes": "32x32",
-      "type": "image/x-icon"
-    }
-  ],
+    "short_name": "ClipCine",
+    "name": "ClipCine - Explore & Watch Movie Clips Anytime",
+    "description": "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films. Whether you're looking for iconic scenes, unforgettable moments, or just want to revisit the best parts of a movie, ClipCine has it all. Browse, search, and enjoy clips from a wide variety of genres and movies, all in one place. Stay up-to-date with the latest film highlights and relive the magic of cinema!",
   
-
-  "orientation": "portrait",
-  "lang": "en"
-}
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#002244",
+    "theme_color": "#002244",
+    "icons": [
+      {
+        "src": "/android-icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon.ico",
+        "sizes": "16x16",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "/android-icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "app_links": {
+      "web": {
+        "url": "https://clipcine.vercel.app"
+      }
+    },
+    "category": "Explore & Watch Movie Clips Anytime - ClipCine",
+    "creator": "Jayesh Jain",
+    "publisher": "Jayesh Jain",
+    "robots": {
+      "index": true,
+      "follow": true,
+      "nocache": false,
+      "googleBot": {
+        "index": true,
+        "follow": true,
+        "noimageindex": false,
+        "max-video-preview": 400,
+        "max-image-preview": "large",
+        "max-snippet": 160
+      }
+    },
+    "authors": [
+      {
+        "name": "Jayesh Jain",
+        "url": "https://jayeshjain.vercel.app"
+      }
+    ],
+    "openGraph": {
+      "type": "website",
+      "locale": "en_US",
+      "url": "https://clipcine.vercel.app",
+      "site_name": "ClipCine",
+      "title": "ClipCine - Explore & Watch Movie Clips Anytime",
+      "description": "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films. Whether you're looking for iconic scenes, unforgettable moments, or just want to revisit the best parts of a movie, ClipCine has it all. Browse, search, and enjoy clips from a wide variety of genres and movies, all in one place. Stay up-to-date with the latest film highlights and relive the magic of cinema!",
+      "images": [
+        {
+          "url": "https://clipcine.vercel.app/preview.jpg",
+          "width": 1200,
+          "height": 630,
+          "alt": "ClipCine - Explore & Watch Movie Clips Anytime"
+        }
+      ],
+      "emails": ["contact@clipcine.com"],
+      "country_name": "United States"
+    },
+    "twitter": {
+      "creator": "@jayeshjain",
+      "site": "https://clipcine.vercel.app",
+      "card": "summary_large_image",
+      "title": "ClipCine - Explore & Watch Movie Clips Anytime",
+      "description": "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films. Whether you're looking for iconic scenes, unforgettable moments, or just want to revisit the best parts of a movie, ClipCine has it all. Browse, search, and enjoy clips from a wide variety of genres and movies, all in one place. Stay up-to-date with the latest film highlights and relive the magic of cinema!",
+      "images": [
+        {
+          "url": "https://clipcine.vercel.app/preview.jpg",
+          "width": 1200,
+          "height": 630,
+          "alt": "ClipCine - Explore & Watch Movie Clips Anytime"
+        }
+      ]
+    }
+  }
+  

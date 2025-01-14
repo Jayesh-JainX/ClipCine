@@ -16,6 +16,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { MdOutlinePolicy } from "react-icons/md";
 
 const Footer = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -197,6 +198,26 @@ const Footer = () => {
                     className="bg-primary-foreground text-primary border"
                   >
                     <p>Portfolio</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link
+                      href="/policy"
+                      rel="noopener noreferrer"
+                      className="hover:text-yellow-600 transition-colors duration-200"
+                    >
+                      <MdOutlinePolicy size={30} />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent
+                    side="bottom"
+                    className="bg-primary-foreground text-primary border"
+                  >
+                    <p>Policy</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
