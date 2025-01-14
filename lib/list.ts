@@ -45,7 +45,7 @@ const reelsData: Reel[] = [
   {
     id: "5",
     movieName: "The Angry Birds",
-    tags: ["Sci-Fi", "Adventure", "Nature"],
+    tags: ["Comedy", "Animation", "Adventure"],
     partName: "Part 6",
     name: "1204.mp4",
     code: 1204,

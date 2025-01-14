@@ -1,0 +1,20 @@
+{
+  "name": "ClipCine",
+  "short_name": "ClipCine",
+  "description": "ClipCine is your go-to platform for discovering and watching movie clips from your favorite films.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#87CEEB",
+  "icons": [
+    {
+      "src": "/favicon-32x32.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  
+
+  "orientation": "portrait",
+  "lang": "en"
+}

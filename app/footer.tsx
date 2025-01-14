@@ -34,9 +34,16 @@ const Footer = () => {
       description: "Trending movie clips and exclusive moments.",
     },
     {
+      name: "Clip Vibe",
+      url: "https://www.instagram.com/clip.vibe",
+      profilePicUrl: "insta3.jpg",
+      description:
+        "Watch the most iconic and unforgettable clips from Hindi films.",
+    },
+    {
       name: "Eyes Dollar",
       url: "https://www.instagram.com/eyes_dollar",
-      profilePicUrl: "insta3.jpg",
+      profilePicUrl: "insta4.jpg",
       description: "Watch the best clips from Hindi films.",
     },
   ];
